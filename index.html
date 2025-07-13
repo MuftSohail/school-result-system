@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="ur" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Government Middle School Town Pishin - Result System</title>
+    <title>گورنمنٹ مڈل اسکول ٹاؤن پشین - رزلٹ سسٹم</title>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -27,7 +27,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Nunito', sans-serif;
+            font-family: 'Nunito', 'Noto Nastaliq Urdu', sans-serif;
         }
 
         body {
@@ -517,24 +517,42 @@
             display: none;
             z-index: 1000;
         }
+        
+        /* Print Styles */
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            #reportCard, #reportCard * {
+                visibility: visible;
+            }
+            #reportCard {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                box-shadow: none;
+                border: none;
+            }
+        }
     </style>
 </head>
 <body>
     <!-- Offline Indicator -->
     <div class="offline-indicator">
-        <i class="fas fa-wifi"></i> Offline Mode
+        <i class="fas fa-wifi"></i> آف لائن موڈ
     </div>
 
     <!-- Toast Notification -->
     <div class="toast">
         <i class="fas fa-check-circle"></i>
-        <span class="toast-message">Result saved successfully!</span>
+        <span class="toast-message">رزلٹ محفوظ ہو گیا!</span>
     </div>
 
     <!-- Header -->
     <header>
         <div class="lang-toggle">
-            <button class="lang-btn" id="langToggle">اردو</button>
+            <button class="lang-btn" id="langToggle">English</button>
         </div>
         
         <div class="container">
@@ -542,9 +560,8 @@
                 <div class="school-logo">
                     <i class="fas fa-graduation-cap"></i>
                 </div>
-                <h1 class="school-name">Government Middle School Town Pishin</h1>
                 <h1 class="school-name urdu">گورنمنٹ مڈل اسکول ٹاؤن پشین</h1>
-                <p class="school-motto">Education for Excellence</p>
+                <p class="school-motto urdu">تعلیم سب کے لیے</p>
             </div>
         </div>
     </header>
@@ -553,16 +570,16 @@
         <!-- Navigation Tabs -->
         <div class="nav-container">
             <div class="tabs">
-                <div class="tab active" data-target="dashboard"><i class="fas fa-chart-line"></i> Dashboard</div>
-                <div class="tab" data-target="entry"><i class="fas fa-user-graduate"></i> Student Entry</div>
-                <div class="tab" data-target="results"><i class="fas fa-file-alt"></i> Results</div>
-                <div class="tab" data-target="records"><i class="fas fa-database"></i> Records</div>
+                <div class="tab active" data-target="dashboard"><i class="fas fa-chart-line"></i> ڈیش بورڈ</div>
+                <div class="tab" data-target="entry"><i class="fas fa-user-graduate"></i> طالب علم کا اندراج</div>
+                <div class="tab" data-target="results"><i class="fas fa-file-alt"></i> رزلٹ</div>
+                <div class="tab" data-target="records"><i class="fas fa-database"></i> ریکارڈز</div>
             </div>
         </div>
 
         <!-- Dashboard Section -->
         <section id="dashboard" class="content-section active">
-            <h2 class="section-title"><i class="fas fa-chart-line"></i> Performance Dashboard</h2>
+            <h2 class="section-title"><i class="fas fa-chart-line"></i> کارکردگی کا ڈیش بورڈ</h2>
             
             <div class="chart-container">
                 <canvas id="classPerformanceChart"></canvas>
@@ -575,531 +592,84 @@
             <div class="summary-box">
                 <div class="summary-item">
                     <div class="summary-value">87%</div>
-                    <div class="summary-label">Overall Pass Rate</div>
+                    <div class="summary-label">مجموعی پاس ریٹ</div>
                 </div>
                 <div class="summary-item">
                     <div class="summary-value">94.2%</div>
-                    <div class="summary-label">Class 8 Average</div>
+                    <div class="summary-label">جماعت 8 اوسط</div>
                 </div>
                 <div class="summary-item">
                     <div class="summary-value">248</div>
-                    <div class="summary-label">Total Students</div>
+                    <div class="summary-label">کل طلبہ</div>
                 </div>
                 <div class="summary-item">
                     <div class="summary-value">24</div>
-                    <div class="summary-label">Distinctions</div>
+                    <div class="summary-label">فرسٹ کلاس</div>
                 </div>
             </div>
         </section>
 
         <!-- Student Entry Section -->
         <section id="entry" class="content-section">
-            <h2 class="section-title"><i class="fas fa-user-graduate"></i> Student Data Entry</h2>
+            <h2 class="section-title"><i class="fas fa-user-graduate"></i> طالب علم کا اندراج</h2>
             
             <form id="studentForm">
                 <div class="form-grid">
                     <div class="form-group">
-                        <label for="studentName">Student Name</label>
-                        <input type="text" id="studentName" class="form-control" placeholder="Enter full name" required>
+                        <label for="studentName" class="urdu">طالب علم کا نام</label>
+                        <input type="text" id="studentName" class="form-control" placeholder="پورا نام درج کریں" required>
                     </div>
                     
                     <div class="form-group">
-                        <label for="rollNumber">Roll Number</label>
-                        <input type="text" id="rollNumber" class="form-control" placeholder="Enter roll number" required>
+                        <label for="rollNumber" class="urdu">رول نمبر</label>
+                        <input type="text" id="rollNumber" class="form-control" placeholder="رول نمبر درج کریں" required>
                     </div>
                     
                     <div class="form-group">
-                        <label for="studentClass">Class</label>
+                        <label for="studentClass" class="urdu">جماعت</label>
                         <select id="studentClass" class="form-control" required>
-                            <option value="">Select Class</option>
-                            <option value="6">Class 6</option>
-                            <option value="7">Class 7</option>
-                            <option value="8">Class 8</option>
+                            <option value="">جماعت منتخب کریں</option>
+                            <option value="6">جماعت 6</option>
+                            <option value="7">جماعت 7</option>
+                            <option value="8">جماعت 8</option>
                         </select>
                     </div>
                     
                     <div class="form-group">
-                        <label for="section">Section</label>
+                        <label for="section" class="urdu">سیکشن</label>
                         <select id="section" class="form-control" required>
-                            <option value="">Select Section</option>
-                            <option value="A">Section A</option>
-                            <option value="B">Section B</option>
-                            <option value="C">Section C</option>
+                            <option value="">سیکشن منتخب کریں</option>
+                            <option value="A">سیکشن اے</option>
+                            <option value="B">سیکشن بی</option>
+                            <option value="C">سیکشن سی</option>
                         </select>
                     </div>
                 </div>
                 
-                <h3 class="section-title"><i class="fas fa-book"></i> Subject Marks</h3>
+                <h3 class="section-title"><i class="fas fa-book"></i> مضامین کے نمبر</h3>
                 
                 <div class="table-responsive">
                     <table class="marks-table">
                         <thead>
                             <tr>
-                                <th>Subject</th>
-                                <th>Total Marks</th>
-                                <th>Obtained Marks</th>
-                                <th>Percentage</th>
-                                <th>Grade</th>
+                                <th class="urdu">مضمون</th>
+                                <th class="urdu">کل نمبر</th>
+                                <th class="urdu">حاصل کردہ نمبر</th>
+                                <th class="urdu">فیصد</th>
+                                <th class="urdu">گریڈ</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>English</td>
+                                <td class="urdu">انگریزی</td>
                                 <td>100</td>
                                 <td><input type="number" class="form-control" min="0" max="100" value="85" required></td>
                                 <td>85%</td>
                                 <td>A</td>
                             </tr>
                             <tr>
-                                <td>Urdu</td>
+                                <td class="urdu">اردو</td>
                                 <td>100</td>
                                 <td><input type="number" class="form-control" min="0" max="100" value="78" required></td>
                                 <td>78%</td>
-                                <td>B</td>
-                            </tr>
-                            <tr>
-                                <td>Mathematics</td>
-                                <td>100</td>
-                                <td><input type="number" class="form-control" min="0" max="100" value="92" required></td>
-                                <td>92%</td>
-                                <td>A+</td>
-                            </tr>
-                            <tr>
-                                <td>Science</td>
-                                <td>100</td>
-                                <td><input type="number" class="form-control" min="0" max="100" value="88" required></td>
-                                <td>88%</td>
-                                <td>A</td>
-                            </tr>
-                            <tr>
-                                <td>Social Studies</td>
-                                <td>100</td>
-                                <td><input type="number" class="form-control" min="0" max="100" value="81" required></td>
-                                <td>81%</td>
-                                <td>B+</td>
-                            </tr>
-                            <tr>
-                                <td>Islamiat</td>
-                                <td>100</td>
-                                <td><input type="number" class="form-control" min="0" max="100" value="90" required></td>
-                                <td>90%</td>
-                                <td>A+</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                
-                <div class="action-buttons">
-                    <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Save Student Record</button>
-                    <button type="reset" class="btn"><i class="fas fa-redo"></i> Reset Form</button>
-                </div>
-            </form>
-        </section>
-
-        <!-- Results Section -->
-        <section id="results" class="content-section">
-            <h2 class="section-title"><i class="fas fa-file-alt"></i> Generate Result</h2>
-            
-            <div class="form-group">
-                <label for="searchStudent">Search Student</label>
-                <div style="display:flex; gap:10px;">
-                    <input type="text" id="searchStudent" class="form-control" placeholder="Enter roll number or name">
-                    <button class="btn btn-primary"><i class="fas fa-search"></i> Search</button>
-                </div>
-            </div>
-            
-            <div class="result-card" id="reportCard">
-                <div class="card-header">
-                    <h2 class="card-title">ANNUAL REPORT CARD</h2>
-                    <p>Academic Year: 2023-2024</p>
-                </div>
-                
-                <div class="student-info">
-                    <div class="info-item">
-                        <span class="info-label">Student Name</span>
-                        <span class="info-value">Ali Ahmed Khan</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">Father's Name</span>
-                        <span class="info-value">Ahmed Khan</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">Roll Number</span>
-                        <span class="info-value">GMSTP-8A-23</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">Class & Section</span>
-                        <span class="info-value">8 - A</span>
-                    </div>
-                </div>
-                
-                <div class="table-responsive">
-                    <table class="marks-table">
-                        <thead>
-                            <tr>
-                                <th>Subject</th>
-                                <th>Total Marks</th>
-                                <th>Obtained Marks</th>
-                                <th>Percentage</th>
-                                <th>Grade</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>English</td>
-                                <td>100</td>
-                                <td>85</td>
-                                <td>85%</td>
-                                <td>A</td>
-                            </tr>
-                            <tr>
-                                <td>Urdu</td>
-                                <td>100</td>
-                                <td>78</td>
-                                <td>78%</td>
-                                <td>B</td>
-                            </tr>
-                            <tr>
-                                <td>Mathematics</td>
-                                <td>100</td>
-                                <td>92</td>
-                                <td>92%</td>
-                                <td>A+</td>
-                            </tr>
-                            <tr>
-                                <td>Science</td>
-                                <td>100</td>
-                                <td>88</td>
-                                <td>88%</td>
-                                <td>A</td>
-                            </tr>
-                            <tr>
-                                <td>Social Studies</td>
-                                <td>100</td>
-                                <td>81</td>
-                                <td>81%</td>
-                                <td>B+</td>
-                            </tr>
-                            <tr>
-                                <td>Islamiat</td>
-                                <td>100</td>
-                                <td>90</td>
-                                <td>90%</td>
-                                <td>A+</td>
-                            </tr>
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <th>Total</th>
-                                <th>600</th>
-                                <th>514</th>
-                                <th>85.67%</th>
-                                <th>A</th>
-                            </tr>
-                        </tfoot>
-                    </table>
-                </div>
-                
-                <div class="summary-box">
-                    <div class="summary-item">
-                        <div class="summary-value">85.67%</div>
-                        <div class="summary-label">Overall Percentage</div>
-                    </div>
-                    <div class="summary-item">
-                        <div class="summary-value">A</div>
-                        <div class="summary-label">Final Grade</div>
-                    </div>
-                    <div class="summary-item">
-                        <div class="summary-value">2nd</div>
-                        <div class="summary-label">Position in Class</div>
-                    </div>
-                </div>
-                
-                <div style="display: flex; justify-content: space-between; margin-top: 30px;">
-                    <div style="text-align: center;">
-                        <div style="height: 1px; width: 200px; background: #000; margin-bottom: 5px;"></div>
-                        <div>Class Teacher</div>
-                    </div>
-                    <div style="text-align: center;">
-                        <div style="height: 1px; width: 200px; background: #000; margin-bottom: 5px;"></div>
-                        <div>Principal</div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="action-buttons">
-                <button class="btn btn-success" id="generatePdf"><i class="fas fa-file-pdf"></i> Generate PDF Report</button>
-                <button class="btn btn-primary"><i class="fas fa-print"></i> Print Report Card</button>
-            </div>
-        </section>
-
-        <!-- Records Section -->
-        <section id="records" class="content-section">
-            <h2 class="section-title"><i class="fas fa-database"></i> Student Records</h2>
-            
-            <div class="form-grid">
-                <div class="form-group">
-                    <label for="searchClass">Class</label>
-                    <select id="searchClass" class="form-control">
-                        <option value="">All Classes</option>
-                        <option value="6">Class 6</option>
-                        <option value="7">Class 7</option>
-                        <option value="8">Class 8</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="searchSection">Section</label>
-                    <select id="searchSection" class="form-control">
-                        <option value="">All Sections</option>
-                        <option value="A">Section A</option>
-                        <option value="B">Section B</option>
-                        <option value="C">Section C</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="searchTerm">Search by Name/Roll No</label>
-                    <input type="text" id="searchTerm" class="form-control" placeholder="Enter name or roll number">
-                </div>
-                
-                <div class="form-group" style="align-self: flex-end;">
-                    <button class="btn btn-primary" style="width:100%"><i class="fas fa-search"></i> Search Records</button>
-                </div>
-            </div>
-            
-            <div class="table-responsive">
-                <table class="result-table">
-                    <thead>
-                        <tr>
-                            <th>Roll No</th>
-                            <th>Name</th>
-                            <th>Class</th>
-                            <th>Percentage</th>
-                            <th>Grade</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>GMSTP-8A-23</td>
-                            <td>Ali Ahmed Khan</td>
-                            <td>8-A</td>
-                            <td>85.67%</td>
-                            <td>A</td>
-                            <td>
-                                <button class="btn btn-primary btn-sm"><i class="fas fa-eye"></i></button>
-                                <button class="btn btn-success btn-sm"><i class="fas fa-file-pdf"></i></button>
-                                <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>GMSTP-7B-15</td>
-                            <td>Fatima Zahra</td>
-                            <td>7-B</td>
-                            <td>92.33%</td>
-                            <td>A+</td>
-                            <td>
-                                <button class="btn btn-primary btn-sm"><i class="fas fa-eye"></i></button>
-                                <button class="btn btn-success btn-sm"><i class="fas fa-file-pdf"></i></button>
-                                <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>GMSTP-6C-42</td>
-                            <td>Bilal Ahmed</td>
-                            <td>6-C</td>
-                            <td>78.50%</td>
-                            <td>B+</td>
-                            <td>
-                                <button class="btn btn-primary btn-sm"><i class="fas fa-eye"></i></button>
-                                <button class="btn btn-success btn-sm"><i class="fas fa-file-pdf"></i></button>
-                                <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>GMSTP-8A-07</td>
-                            <td>Sanaullah Kakar</td>
-                            <td>8-A</td>
-                            <td>81.00%</td>
-                            <td>B+</td>
-                            <td>
-                                <button class="btn btn-primary btn-sm"><i class="fas fa-eye"></i></button>
-                                <button class="btn btn-success btn-sm"><i class="fas fa-file-pdf"></i></button>
-                                <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>GMSTP-7A-33</td>
-                            <td>Zubair Ahmed</td>
-                            <td>7-A</td>
-                            <td>88.83%</td>
-                            <td>A</td>
-                            <td>
-                                <button class="btn btn-primary btn-sm"><i class="fas fa-eye"></i></button>
-                                <button class="btn btn-success btn-sm"><i class="fas fa-file-pdf"></i></button>
-                                <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            
-            <div style="display: flex; justify-content: space-between; margin-top: 20px;">
-                <div>Showing 5 of 248 records</div>
-                <div>
-                    <button class="btn"><i class="fas fa-arrow-left"></i></button>
-                    <button class="btn"><i class="fas fa-arrow-right"></i></button>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <p class="urdu">تیار کردہ: مفتی محمد سہیل خان شیرانی — رابطہ: 0303-3823350</p>
-        </div>
-    </footer>
-
-    <script>
-        // Tab Navigation
-        document.querySelectorAll('.tab').forEach(tab => {
-            tab.addEventListener('click', () => {
-                // Remove active class from all tabs and sections
-                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-                document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
-                
-                // Add active class to clicked tab
-                tab.classList.add('active');
-                
-                // Show corresponding section
-                const target = tab.getAttribute('data-target');
-                document.getElementById(target).classList.add('active');
-            });
-        });
-        
-        // Language Toggle
-        const langToggle = document.getElementById('langToggle');
-        langToggle.addEventListener('click', () => {
-            if (langToggle.textContent === 'English') {
-                langToggle.textContent = 'اردو';
-                // Here we would normally update all text to Urdu
-                document.querySelector('.school-motto').textContent = 'تعلیم سب کے لیے';
-            } else {
-                langToggle.textContent = 'English';
-                // Here we would normally update all text to English
-                document.querySelector('.school-motto').textContent = 'Education for All';
-            }
-        });
-        
-        // Show Toast Notification
-        function showToast(message) {
-            const toast = document.querySelector('.toast');
-            const toastMessage = document.querySelector('.toast-message');
-            
-            toastMessage.textContent = message;
-            toast.classList.add('show');
-            
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 3000);
-        }
-        
-        // Form Submission
-        document.getElementById('studentForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            showToast('Student record saved successfully!');
-        });
-        
-        // Generate PDF
-        document.getElementById('generatePdf').addEventListener('click', () => {
-            showToast('PDF report is being generated...');
-            // In a real implementation, we would use jsPDF and html2canvas
-            setTimeout(() => {
-                showToast('PDF report generated successfully!');
-            }, 2000);
-        });
-        
-        // Charts
-        window.onload = function() {
-            // Class Performance Chart
-            const classCtx = document.getElementById('classPerformanceChart').getContext('2d');
-            new Chart(classCtx, {
-                type: 'bar',
-                data: {
-                    labels: ['Class 6', 'Class 7', 'Class 8'],
-                    datasets: [{
-                        label: 'Average Percentage',
-                        data: [82.5, 86.2, 94.2],
-                        backgroundColor: [
-                            'rgba(52, 152, 219, 0.7)',
-                            'rgba(46, 204, 113, 0.7)',
-                            'rgba(241, 196, 15, 0.7)'
-                        ],
-                        borderColor: [
-                            'rgb(52, 152, 219)',
-                            'rgb(46, 204, 113)',
-                            'rgb(241, 196, 15)'
-                        ],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        y: {
-                            beginAtZero: false,
-                            min: 70,
-                            max: 100,
-                            title: {
-                                display: true,
-                                text: 'Percentage (%)'
-                            }
-                        }
-                    }
-                }
-            });
-            
-            // Subject Performance Chart
-            const subjectCtx = document.getElementById('subjectPerformanceChart').getContext('2d');
-            new Chart(subjectCtx, {
-                type: 'radar',
-                data: {
-                    labels: ['English', 'Urdu', 'Math', 'Science', 'S.Studies', 'Islamiat'],
-                    datasets: [{
-                        label: 'Class 8 Average',
-                        data: [88, 82, 92, 85, 78, 95],
-                        fill: true,
-                        backgroundColor: 'rgba(46, 204, 113, 0.2)',
-                        borderColor: 'rgb(46, 204, 113)',
-                        pointBackgroundColor: 'rgb(46, 204, 113)',
-                        pointBorderColor: '#fff',
-                        pointHoverBackgroundColor: '#fff',
-                        pointHoverBorderColor: 'rgb(46, 204, 113)'
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        r: {
-                            angleLines: {
-                                display: true
-                            },
-                            suggestedMin: 70,
-                            suggestedMax: 100
-                        }
-                    }
-                }
-            });
-        };
-        
-        // Simulate offline mode indicator
-        setInterval(() => {
-            document.querySelector('.offline-indicator').style.display = 'block';
-        }, 10000);
-    </script>
-</body>
-</html>
+    
