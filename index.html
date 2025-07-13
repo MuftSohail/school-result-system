@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ur" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>گورنمنٹ مڈل اسکول پشین - رزلٹ سسٹم</title>
+    <title>Government Middle School Pishin - Result System</title>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -27,7 +27,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Nunito', 'Noto Nastaliq Urdu', sans-serif;
+            font-family: 'Nunito', sans-serif;
         }
 
         body {
@@ -517,42 +517,24 @@
             display: none;
             z-index: 1000;
         }
-        
-        /* Print Styles */
-        @media print {
-            body * {
-                visibility: hidden;
-            }
-            #reportCard, #reportCard * {
-                visibility: visible;
-            }
-            #reportCard {
-                position: absolute;
-                left: 0;
-                top: 0;
-                width: 100%;
-                box-shadow: none;
-                border: none;
-            }
-        }
     </style>
 </head>
 <body>
     <!-- Offline Indicator -->
     <div class="offline-indicator">
-        <i class="fas fa-wifi"></i> آف لائن موڈ
+        <i class="fas fa-wifi"></i> Offline Mode
     </div>
 
     <!-- Toast Notification -->
     <div class="toast">
         <i class="fas fa-check-circle"></i>
-        <span class="toast-message">رزلٹ محفوظ ہو گیا!</span>
+        <span class="toast-message">Result saved successfully!</span>
     </div>
 
     <!-- Header -->
     <header>
         <div class="lang-toggle">
-            <button class="lang-btn" id="langToggle">English</button>
+            <button class="lang-btn" id="langToggle">اردو</button>
         </div>
         
         <div class="container">
@@ -560,8 +542,9 @@
                 <div class="school-logo">
                     <i class="fas fa-graduation-cap"></i>
                 </div>
+                <h1 class="school-name">Government Middle School Town Pishin</h1>
                 <h1 class="school-name urdu">گورنمنٹ مڈل اسکول ٹاؤن پشین</h1>
-                <p class="school-motto urdu">تعلیم سب کے لیے</p>
+                <p class="school-motto">Education for Excellence</p>
             </div>
         </div>
     </header>
@@ -570,16 +553,16 @@
         <!-- Navigation Tabs -->
         <div class="nav-container">
             <div class="tabs">
-                <div class="tab active" data-target="dashboard"><i class="fas fa-chart-line"></i> ڈیش بورڈ</div>
-                <div class="tab" data-target="entry"><i class="fas fa-user-graduate"></i> طالب علم کا اندراج</div>
-                <div class="tab" data-target="results"><i class="fas fa-file-alt"></i> رزلٹ</div>
-                <div class="tab" data-target="records"><i class="fas fa-database"></i> ریکارڈز</div>
+                <div class="tab active" data-target="dashboard"><i class="fas fa-chart-line"></i> Dashboard</div>
+                <div class="tab" data-target="entry"><i class="fas fa-user-graduate"></i> Student Entry</div>
+                <div class="tab" data-target="results"><i class="fas fa-file-alt"></i> Results</div>
+                <div class="tab" data-target="records"><i class="fas fa-database"></i> Records</div>
             </div>
         </div>
 
         <!-- Dashboard Section -->
         <section id="dashboard" class="content-section active">
-            <h2 class="section-title"><i class="fas fa-chart-line"></i> کارکردگی کا ڈیش بورڈ</h2>
+            <h2 class="section-title"><i class="fas fa-chart-line"></i> Performance Dashboard</h2>
             
             <div class="chart-container">
                 <canvas id="classPerformanceChart"></canvas>
@@ -592,84 +575,94 @@
             <div class="summary-box">
                 <div class="summary-item">
                     <div class="summary-value">87%</div>
-                    <div class="summary-label">مجموعی پاس ریٹ</div>
+                    <div class="summary-label">Overall Pass Rate</div>
                 </div>
                 <div class="summary-item">
                     <div class="summary-value">94.2%</div>
-                    <div class="summary-label">جماعت 8 اوسط</div>
+                    <div class="summary-label">Class 8 Average</div>
                 </div>
                 <div class="summary-item">
                     <div class="summary-value">248</div>
-                    <div class="summary-label">کل طلبہ</div>
+                    <div class="summary-label">Total Students</div>
                 </div>
                 <div class="summary-item">
                     <div class="summary-value">24</div>
-                    <div class="summary-label">فرسٹ کلاس</div>
+                    <div class="summary-label">Distinctions</div>
                 </div>
             </div>
         </section>
 
         <!-- Student Entry Section -->
         <section id="entry" class="content-section">
-            <h2 class="section-title"><i class="fas fa-user-graduate"></i> طالب علم کا اندراج</h2>
+            <h2 class="section-title"><i class="fas fa-user-graduate"></i> Student Data Entry</h2>
             
             <form id="studentForm">
                 <div class="form-grid">
                     <div class="form-group">
-                        <label for="studentName" class="urdu">طالب علم کا نام</label>
-                        <input type="text" id="studentName" class="form-control" placeholder="پورا نام درج کریں" required>
+                        <label for="studentName">Student Name</label>
+                        <input type="text" id="studentName" class="form-control" placeholder="Enter full name" required>
                     </div>
                     
                     <div class="form-group">
-                        <label for="rollNumber" class="urdu">رول نمبر</label>
-                        <input type="text" id="rollNumber" class="form-control" placeholder="رول نمبر درج کریں" required>
+                        <label for="rollNumber">Roll Number</label>
+                        <input type="text" id="rollNumber" class="form-control" placeholder="Enter roll number" required>
                     </div>
                     
                     <div class="form-group">
-                        <label for="studentClass" class="urdu">جماعت</label>
+                        <label for="studentClass">Class</label>
                         <select id="studentClass" class="form-control" required>
-                            <option value="">جماعت منتخب کریں</option>
-                            <option value="6">جماعت 6</option>
-                            <option value="7">جماعت 7</option>
-                            <option value="8">جماعت 8</option>
+                            <option value="">Select Class</option>
+                            <option value="6">Class 6</option>
+                            <option value="7">Class 7</option>
+                            <option value="8">Class 8</option>
                         </select>
                     </div>
                     
                     <div class="form-group">
-                        <label for="section" class="urdu">سیکشن</label>
+                        <label for="section">Section</label>
                         <select id="section" class="form-control" required>
-                            <option value="">سیکشن منتخب کریں</option>
-                            <option value="A">سیکشن اے</option>
-                            <option value="B">سیکشن بی</option>
-                            <option value="C">سیکشن سی</option>
+                            <option value="">Select Section</option>
+                            <option value="A">Section A</option>
+                            <option value="B">Section B</option>
+                            <option value="C">Section C</option>
                         </select>
                     </div>
                 </div>
                 
-                <h3 class="section-title"><i class="fas fa-book"></i> مضامین کے نمبر</h3>
+                <h3 class="section-title"><i class="fas fa-book"></i> Subject Marks</h3>
                 
                 <div class="table-responsive">
                     <table class="marks-table">
                         <thead>
                             <tr>
-                                <th class="urdu">مضمون</th>
-                                <th class="urdu">کل نمبر</th>
-                                <th class="urdu">حاصل کردہ نمبر</th>
-                                <th class="urdu">فیصد</th>
-                                <th class="urdu">گریڈ</th>
+                                <th>Subject</th>
+                                <th>Total Marks</th>
+                                <th>Obtained Marks</th>
+                                <th>Percentage</th>
+                                <th>Grade</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td class="urdu">انگریزی</td>
+                                <td>English</td>
                                 <td>100</td>
                                 <td><input type="number" class="form-control" min="0" max="100" value="85" required></td>
                                 <td>85%</td>
                                 <td>A</td>
                             </tr>
                             <tr>
-                                <td class="urdu">اردو</td>
+                                <td>Urdu</td>
                                 <td>100</td>
                                 <td><input type="number" class="form-control" min="0" max="100" value="78" required></td>
                                 <td>78%</td>
-    
+                                <td>B</td>
+                            </tr>
+                            <tr>
+                                <td>Mathematics</td>
+                                <td>100</td>
+                                <td><input type="number" class="form-control" min="0" max="100" value="92" required></td>
+                                <td>92%</td>
+                                <td>A+</td>
+                            </tr>
+                            <tr>
+   
